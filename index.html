@@ -662,7 +662,7 @@
             const username = user?.username || 'unknown_username';
             const message = `DYNASTY_STARS_${currentStarsProduct.amount}_USER_${userId}_${username}`;
             
-            const url = `https://www.donationalerts.com/r/artemluci?amount=${currentStarsProduct.price}&message=${encodeURIComponent(message)}`;
+            const url = `https://www.donationalerts.com/r/dynastyshop?amount=${currentStarsProduct.price}&message=${encodeURIComponent(message)}`;
             
             if (window.Telegram?.WebApp) {
                 window.Telegram.WebApp.openLink(url);
@@ -685,7 +685,7 @@
             const username = user?.username || 'unknown_username';
             const message = `DYNASTY_TON_${currentTonProduct.amount}_USER_${userId}_${username}`;
             
-            const url = `https://www.donationalerts.com/r/artemluci?amount=${currentTonProduct.price}&message=${encodeURIComponent(message)}`;
+            const url = `https://www.donationalerts.com/r/dynastyshop?amount=${currentTonProduct.price}&message=${encodeURIComponent(message)}`;
             
             if (window.Telegram?.WebApp) {
                 window.Telegram.WebApp.openLink(url);
