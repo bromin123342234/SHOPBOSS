@@ -66,7 +66,6 @@
             padding: 20px;
         }
 
-        /* Header Styles */
         .header {
             text-align: center;
             margin-bottom: 30px;
@@ -104,7 +103,6 @@
             font-weight: 300;
         }
 
-        /* Card Styles */
         .section {
             background: var(--bg-card);
             border-radius: 20px;
@@ -132,7 +130,6 @@
             margin-left: 10px;
         }
 
-        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -187,15 +184,14 @@
             background-color: var(--bg-primary);
         }
 
-        /* Смещение картинок */
         .stars-icon {
             background-image: url('https://i.ibb.co/SXCHq6xD/stars-image.jpg');
-            background-position: 60% center; /* Смещение вправо */
+            background-position: 60% center;
         }
 
         .ton-icon {
             background-image: url('https://i.ibb.co/YFLKYQSb/ton-new-image.jpg');
-            background-position: 40% center; /* Смещение влево */
+            background-position: 40% center;
         }
 
         .product-name {
@@ -213,7 +209,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Calculator Styles */
         .calculator {
             background: var(--bg-secondary);
             border-radius: 16px;
@@ -264,7 +259,6 @@
             box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
         }
 
-        /* Button Styles */
         .btn {
             width: 100%;
             padding: 18px;
@@ -305,13 +299,6 @@
             box-shadow: 0 10px 35px rgba(255, 107, 0, 0.6);
         }
 
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 2px solid var(--accent);
-        }
-
-        /* Warning & Info Styles */
         .warning {
             background: linear-gradient(135deg, var(--danger), #ff6b6b);
             color: white;
@@ -351,7 +338,6 @@
             display: none;
         }
 
-        /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -365,7 +351,6 @@
             animation: fadeIn 0.8s ease-out;
         }
 
-        /* Loader for images */
         .product-icon {
             position: relative;
         }
@@ -396,10 +381,10 @@
 
         <div class="warning">
             <i class="fas fa-exclamation-triangle"></i> ВНИМАНИЕ: Точная сумма обязательна! 
-            Ошибка даже на 1 рубль приведет к потере средств!
+            Ошибка даже на 1 рубль приведет к потере средств!<br><br>
+            <i class="fas fa-user"></i> ОБЯЗАТЕЛЬНО указывайте свой юзернейм при оплате!
         </div>
 
-        <!-- Секция звезд -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-star" style="color: var(--accent-gold);"></i>
@@ -408,35 +393,35 @@
             </div>
             
             <div class="products-grid">
-                <div class="product-card" onclick="selectStarsProduct(50, 72)">
-                    <div class="product-icon stars-icon"></div>
-                    <div class="product-name">50 Stars</div>
-                    <div class="product-price">72 ₽</div>
-                </div>
                 <div class="product-card" onclick="selectStarsProduct(100, 144)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">100 Stars</div>
                     <div class="product-price">144 ₽</div>
-                </div>
-                <div class="product-card" onclick="selectStarsProduct(150, 216)">
-                    <div class="product-icon stars-icon"></div>
-                    <div class="product-name">150 Stars</div>
-                    <div class="product-price">216 ₽</div>
-                </div>
-                <div class="product-card" onclick="selectStarsProduct(200, 288)">
-                    <div class="product-icon stars-icon"></div>
-                    <div class="product-name">200 Stars</div>
-                    <div class="product-price">288 ₽</div>
                 </div>
                 <div class="product-card" onclick="selectStarsProduct(250, 360)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">250 Stars</div>
                     <div class="product-price">360 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectStarsProduct(300, 432)">
+                <div class="product-card" onclick="selectStarsProduct(500, 720)">
                     <div class="product-icon stars-icon"></div>
-                    <div class="product-name">300 Stars</div>
-                    <div class="product-price">432 ₽</div>
+                    <div class="product-name">500 Stars</div>
+                    <div class="product-price">720 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(1000, 1440)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">1000 Stars</div>
+                    <div class="product-price">1 440 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(1500, 2160)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">1500 Stars</div>
+                    <div class="product-price">2 160 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(2000, 2880)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">2000 Stars</div>
+                    <div class="product-price">2 880 ₽</div>
                 </div>
             </div>
 
@@ -455,7 +440,6 @@
             </button>
         </div>
 
-        <!-- Секция TON -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-gem" style="color: var(--accent-purple);"></i>
@@ -474,25 +458,25 @@
                     <div class="product-name">2 TON</div>
                     <div class="product-price">330 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(3, 495)">
-                    <div class="product-icon ton-icon"></div>
-                    <div class="product-name">3 TON</div>
-                    <div class="product-price">495 ₽</div>
-                </div>
-                <div class="product-card" onclick="selectTonProduct(4, 660)">
-                    <div class="product-icon ton-icon"></div>
-                    <div class="product-name">4 TON</div>
-                    <div class="product-price">660 ₽</div>
-                </div>
                 <div class="product-card" onclick="selectTonProduct(5, 825)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">5 TON</div>
                     <div class="product-price">825 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(6, 990)">
+                <div class="product-card" onclick="selectTonProduct(10, 1650)">
                     <div class="product-icon ton-icon"></div>
-                    <div class="product-name">6 TON</div>
-                    <div class="product-price">990 ₽</div>
+                    <div class="product-name">10 TON</div>
+                    <div class="product-price">1 650 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectTonProduct(25, 4125)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">25 TON</div>
+                    <div class="product-price">4 125 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectTonProduct(50, 8250)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">50 TON</div>
+                    <div class="product-price">8 250 ₽</div>
                 </div>
             </div>
 
@@ -523,6 +507,11 @@
         let currentStarsProduct = { amount: 0, price: 0 };
         let currentTonProduct = { amount: 0, price: 0 };
 
+        // === НАСТРОЙКИ ДЛЯ УВЕДОМЛЕНИЙ ===
+        const DONATION_ALERTS_TOKEN = '5SuLMCK1tgDGKY65UCLs';
+        const TELEGRAM_BOT_TOKEN = '8040327822:AAFXebd8LGtg3O9yil5-SNtSN5LVvDBsR2U';
+        const TELEGRAM_CHAT_ID = '1612616728';
+
         // Переключение темы
         function toggleTheme() {
             const currentTheme = document.body.getAttribute('data-theme') || 'dark';
@@ -530,7 +519,6 @@
             document.body.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            // Анимация переключения
             document.querySelector('.theme-toggle').style.transform = 'rotate(180deg)';
             setTimeout(() => {
                 document.querySelector('.theme-toggle').style.transform = 'rotate(0deg)';
@@ -547,15 +535,12 @@
         function selectStarsProduct(amount, price) {
             currentStarsProduct = { amount, price };
             
-            // Сбрасываем выделение
             document.querySelectorAll('.product-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // Выделяем выбранный
             event.currentTarget.classList.add('selected');
             
-            // Заполняем калькулятор
             document.getElementById('starsInput').value = amount;
             calculateStarsPrice();
         }
@@ -613,7 +598,8 @@
             
             const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
             const userId = user?.id || 'unknown';
-            const message = `BOSS_STARS_${currentStarsProduct.amount}_USER_${userId}`;
+            const username = user?.username || 'unknown_username';
+            const message = `BOSS_STARS_${currentStarsProduct.amount}_USER_${userId}_${username}`;
             
             const url = `https://www.donationalerts.com/r/artemluci?amount=${currentStarsProduct.price}&message=${encodeURIComponent(message)}`;
             
@@ -623,7 +609,7 @@
                 window.open(url, '_blank');
             }
             
-            showAlert(`🚀 Переведите ТОЧНО ${currentStarsProduct.price} рублей!\n\nВы получите ${currentStarsProduct.amount} PREMIUM STARS`, 'success');
+            showAlert(`🚀 Переведите ТОЧНО ${currentStarsProduct.price} рублей!\n\nОбязательно укажите ваш юзернейм при оплате!\n\nВы получите ${currentStarsProduct.amount} PREMIUM STARS`, 'success');
         }
 
         // Покупка TON
@@ -635,7 +621,8 @@
             
             const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
             const userId = user?.id || 'unknown';
-            const message = `BOSS_TON_${currentTonProduct.amount}_USER_${userId}`;
+            const username = user?.username || 'unknown_username';
+            const message = `BOSS_TON_${currentTonProduct.amount}_USER_${userId}_${username}`;
             
             const url = `https://www.donationalerts.com/r/artemluci?amount=${currentTonProduct.price}&message=${encodeURIComponent(message)}`;
             
@@ -645,8 +632,35 @@
                 window.open(url, '_blank');
             }
             
-            showAlert(`💎 Переведите ТОЧНО ${currentTonProduct.price} рублей!\n\nВы получите ${currentTonProduct.amount} TON`, 'success');
+            showAlert(`💎 Переведите ТОЧНО ${currentTonProduct.price} рублей!\n\nОбязательно укажите ваш юзернейм при оплате!\n\nВы получите ${currentTonProduct.amount} TON`, 'success');
         }
+
+        // Авто-проверка платежей
+        setInterval(async () => {
+            try {
+                const response = await fetch('https://www.donationalerts.com/api/v1/alerts/donations', {
+                    headers: {'Authorization': `Bearer ${DONATION_ALERTS_TOKEN}`}
+                });
+                const data = await response.json();
+                
+                if (data.data && data.data.length > 0) {
+                    data.data.forEach(donation => {
+                        if (donation.message.includes('BOSS_')) {
+                            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                                method: 'POST',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify({
+                                    chat_id: TELEGRAM_CHAT_ID,
+                                    text: `🎉 НОВАЯ ПОКУПКА BOSS!\n👤 От: ${donation.username}\n💰 Сумма: ${donation.amount} RUB\n📦 Товар: ${donation.message}\n⏰ ${new Date().toLocaleString()}`
+                                })
+                            });
+                        }
+                    });
+                }
+            } catch (error) {
+                console.log('Ошибка проверки платежей:', error);
+            }
+        }, 10000);
 
         // Красивые алерты
         function showAlert(message, type) {
@@ -681,7 +695,7 @@
                 alert.style.opacity = '0';
                 alert.style.transform = 'translateX(-50%) translateY(-100px)';
                 setTimeout(() => alert.remove(), 300);
-            }, 4000);
+            }, 5000);
         }
 
         // Инициализация
@@ -693,8 +707,7 @@
                 window.Telegram.WebApp.expand();
             }
             
-            // Выбираем первый товар по умолчанию
-            selectStarsProduct(50, 72);
+            selectStarsProduct(100, 144);
             selectTonProduct(1, 165);
         });
     </script>
