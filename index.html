@@ -181,9 +181,12 @@
             border-radius: 15px;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             border: 3px solid var(--accent);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
             background-color: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
         }
 
         .stars-icon {
@@ -374,6 +377,27 @@
         .smooth-scroll {
             scroll-behavior: smooth;
         }
+
+        /* Анимация пульсации для подсветки */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* Стиль для важного уведомления */
+        .important-notice {
+            background: linear-gradient(135deg, #ffa500, #ff8c00);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-size: 13px;
+            text-align: center;
+            font-weight: 600;
+            border-left: 4px solid #ff8c00;
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -388,8 +412,11 @@
 
         <div class="warning">
             <i class="fas fa-exclamation-triangle"></i> ВНИМАНИЕ: Точная сумма обязательна! 
-            Ошибка даже на 1 рубль приведет к потере средств!<br><br>
-            <i class="fas fa-user"></i> ОБЯЗАТЕЛЬНО указывайте свой юзернейм при оплате!
+            Ошибка даже на 1 рубль приведет к потере средств!
+        </div>
+
+        <div class="important-notice">
+            <i class="fas fa-comment-dots"></i> Указывайте в комментарии вместе с вашим юзернеймом, что именно вы покупаете!
         </div>
 
         <div class="section" id="stars-section">
@@ -643,7 +670,7 @@
                 window.open(url, '_blank');
             }
             
-            showAlert(`👑 Переведите ТОЧНО ${currentStarsProduct.price} рублей!\n\nОбязательно укажите ваш юзернейм при оплате!\n\nВы получите ${currentStarsProduct.amount} PREMIUM STARS`, 'success');
+            showAlert(`👑 Переведите ТОЧНО ${currentStarsProduct.price} рублей!\n\n📝 Укажите в комментарии:\n• Ваш юзернейм\n• Что покупаете (${currentStarsProduct.amount} Stars)\n\nВы получите ${currentStarsProduct.amount} PREMIUM STARS`, 'success');
         }
 
         // Покупка TON
@@ -666,7 +693,7 @@
                 window.open(url, '_blank');
             }
             
-            showAlert(`💎 Переведите ТОЧНО ${currentTonProduct.price} рублей!\n\nОбязательно укажите ваш юзернейм при оплате!\n\nВы получите ${currentTonProduct.amount} TON`, 'success');
+            showAlert(`💎 Переведите ТОЧНО ${currentTonProduct.price} рублей!\n\n📝 Укажите в комментарии:\n• Ваш юзернейм\n• Что покупаете (${currentTonProduct.amount} TON)\n\nВы получите ${currentTonProduct.amount} TON`, 'success');
         }
 
         // Авто-проверка платежей
@@ -729,7 +756,7 @@
                 alert.style.opacity = '0';
                 alert.style.transform = 'translateX(-50%) translateY(-100px)';
                 setTimeout(() => alert.remove(), 300);
-            }, 5000);
+            }, 6000);
         }
 
         // Инициализация
@@ -745,14 +772,5 @@
             selectTonProduct(1, 165);
         });
     </script>
-
-    <style>
-        /* Анимация пульсации для подсветки */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
-    </style>
 </body>
 </html>
