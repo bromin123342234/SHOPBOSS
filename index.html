@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSS - Premium Shop</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent: #ff6b00;
+            --accent-hover: #ff8c33;
+            --accent-gold: #ffd700;
+            --accent-purple: #8a2be2;
+            --danger: #ff4444;
+            --success: #00ff88;
+            --gradient: linear-gradient(135deg, #ff6b00, #ff0080, #8a2be2);
+            --gradient-gold: linear-gradient(135deg, #ffd700, #ff6b00);
+            --gradient-purple: linear-gradient(135deg, #8a2be2, #ff0080);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --accent: #ff6b00;
+            --accent-hover: #ff8c33;
+            --accent-gold: #ffd700;
+            --accent-purple: #8a2be2;
+            --danger: #e53e3e;
+            --success: #38a169;
+            --gradient: linear-gradient(135deg, #ff6b00, #ff0080);
+            --gradient-gold: linear-gradient(135deg, #ffd700, #ff6b00);
+            --gradient-purple: linear-gradient(135deg, #8a2be2, #ff0080);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 20%);
+        }
+
+        .container {
+            max-width: 430px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        /* Card Styles */
+        .section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--gradient);
+            margin-left: 10px;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border-radius: 16px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover::before,
+        .product-card.selected::before {
+            opacity: 1;
+        }
+
+        .product-card:hover,
+        .product-card.selected {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
+        }
+
+        .product-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 12px;
+            border-radius: 15px;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--accent);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+            background-color: var(--bg-primary);
+        }
+
+        /* Смещение картинок */
+        .stars-icon {
+            background-image: url('https://i.ibb.co/SXCHq6xD/stars-image.jpg');
+            background-position: 60% center; /* Смещение вправо */
+        }
+
+        .ton-icon {
+            background-image: url('https://i.ibb.co/YFLKYQSb/ton-new-image.jpg');
+            background-position: 40% center; /* Смещение влево */
+        }
+
+        .product-name {
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Calculator Styles */
+        .calculator {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--bg-card);
+            border-radius: 12px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        }
+
+        .result {
+            background: var(--gradient);
+            color: white;
+            padding: 18px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 18px;
+            margin-top: 15px;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        /* Button Styles */
+        .btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 6px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(255, 107, 0, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 2px solid var(--accent);
+        }
+
+        /* Warning & Info Styles */
+        .warning {
+            background: linear-gradient(135deg, var(--danger), #ff6b6b);
+            color: white;
+            padding: 18px;
+            border-radius: 16px;
+            margin: 20px 0;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(255, 68, 68, 0.3);
+            border-left: 5px solid #ff4444;
+        }
+
+        .info {
+            background: var(--bg-card);
+            border-left: 5px solid var(--accent);
+            padding: 18px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .product-card {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Loader for images */
+        .product-icon {
+            position: relative;
+        }
+
+        .product-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient);
+            border-radius: 12px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-palette"></i>
+            </button>
+            <div class="logo">BOSS</div>
+            <div class="subtitle">Premium Digital Assets</div>
+        </div>
+
+        <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i> ВНИМАНИЕ: Точная сумма обязательна! 
+            Ошибка даже на 1 рубль приведет к потере средств!
+        </div>
+
+        <!-- Секция звезд -->
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-star" style="color: var(--accent-gold);"></i>
+                Premium Stars
+                <span class="badge">HOT</span>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card" onclick="selectStarsProduct(50, 72)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">50 Stars</div>
+                    <div class="product-price">72 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(100, 144)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">100 Stars</div>
+                    <div class="product-price">144 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(150, 216)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">150 Stars</div>
+                    <div class="product-price">216 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(200, 288)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">200 Stars</div>
+                    <div class="product-price">288 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(250, 360)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">250 Stars</div>
+                    <div class="product-price">360 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectStarsProduct(300, 432)">
+                    <div class="product-icon stars-icon"></div>
+                    <div class="product-name">300 Stars</div>
+                    <div class="product-price">432 ₽</div>
+                </div>
+            </div>
+
+            <div class="calculator">
+                <div class="input-group">
+                    <label><i class="fas fa-calculator"></i> Количество звезд:</label>
+                    <input type="number" id="starsInput" placeholder="Введите количество..." oninput="calculateStarsPrice()">
+                </div>
+                <div class="result" id="starsResult">
+                    <i class="fas fa-arrow-right"></i> Введите количество звезд
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="buyStars()">
+                <i class="fas fa-bolt"></i> КУПИТЬ STARS
+            </button>
+        </div>
+
+        <!-- Секция TON -->
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-gem" style="color: var(--accent-purple);"></i>
+                TON Crypto
+                <span class="badge">NEW</span>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card" onclick="selectTonProduct(1, 165)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">1 TON</div>
+                    <div class="product-price">165 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectTonProduct(2, 330)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">2 TON</div>
+                    <div class="product-price">330 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectTonProduct(3, 495)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">3 TON</div>
+                    <div class="product-price">495 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectTonProduct(4, 660)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">4 TON</div>
+                    <div class="product-price">660 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectTonProduct(5, 825)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">5 TON</div>
+                    <div class="product-price">825 ₽</div>
+                </div>
+                <div class="product-card" onclick="selectTonProduct(6, 990)">
+                    <div class="product-icon ton-icon"></div>
+                    <div class="product-name">6 TON</div>
+                    <div class="product-price">990 ₽</div>
+                </div>
+            </div>
+
+            <div class="calculator">
+                <div class="input-group">
+                    <label><i class="fas fa-calculator"></i> Количество TON:</label>
+                    <input type="number" id="tonInput" placeholder="Введите количество..." oninput="calculateTonPrice()">
+                </div>
+                <div class="result" id="tonResult">
+                    <i class="fas fa-arrow-right"></i> Введите количество TON
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="buyTon()">
+                <i class="fas fa-rocket"></i> КУПИТЬ TON
+            </button>
+        </div>
+
+        <div class="info">
+            <i class="fas fa-clock"></i> Доставка: в течение 4 часов<br>
+            <i class="fas fa-headset"></i> Поддержка: @Bruso1<br>
+            <i class="fas fa-shield-alt"></i> Безопасные платежи через DonationAlerts
+        </div>
+    </div>
+
+    <script>
+        // Текущий выбранный товар
+        let currentStarsProduct = { amount: 0, price: 0 };
+        let currentTonProduct = { amount: 0, price: 0 };
+
+        // Переключение темы
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Анимация переключения
+            document.querySelector('.theme-toggle').style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                document.querySelector('.theme-toggle').style.transform = 'rotate(0deg)';
+            }, 300);
+        }
+
+        // Загрузка темы
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        // Выбор продукта звезд
+        function selectStarsProduct(amount, price) {
+            currentStarsProduct = { amount, price };
+            
+            // Сбрасываем выделение
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Выделяем выбранный
+            event.currentTarget.classList.add('selected');
+            
+            // Заполняем калькулятор
+            document.getElementById('starsInput').value = amount;
+            calculateStarsPrice();
+        }
+
+        // Выбор продукта TON
+        function selectTonProduct(amount, price) {
+            currentTonProduct = { amount, price };
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            document.getElementById('tonInput').value = amount;
+            calculateTonPrice();
+        }
+
+        // Калькулятор звезд
+        function calculateStarsPrice() {
+            const input = document.getElementById('starsInput');
+            const result = document.getElementById('starsResult');
+            const amount = parseInt(input.value) || 0;
+            
+            if (amount > 0) {
+                const price = Math.round(amount * 1.44);
+                result.innerHTML = `<i class="fas fa-bolt"></i> ${amount} STARS = ${price} RUB`;
+                currentStarsProduct = { amount, price };
+            } else {
+                result.innerHTML = '<i class="fas fa-arrow-right"></i> Введите количество звезд';
+            }
+        }
+
+        // Калькулятор TON
+        function calculateTonPrice() {
+            const input = document.getElementById('tonInput');
+            const result = document.getElementById('tonResult');
+            const amount = parseInt(input.value) || 0;
+            
+            if (amount > 0) {
+                const price = amount * 165;
+                result.innerHTML = `<i class="fas fa-rocket"></i> ${amount} TON = ${price} RUB`;
+                currentTonProduct = { amount, price };
+            } else {
+                result.innerHTML = '<i class="fas fa-arrow-right"></i> Введите количество TON';
+            }
+        }
+
+        // Покупка звезд
+        function buyStars() {
+            if (currentStarsProduct.amount === 0) {
+                showAlert('Выберите количество звезд!', 'warning');
+                return;
+            }
+            
+            const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
+            const userId = user?.id || 'unknown';
+            const message = `BOSS_STARS_${currentStarsProduct.amount}_USER_${userId}`;
+            
+            const url = `https://www.donationalerts.com/r/artemluci?amount=${currentStarsProduct.price}&message=${encodeURIComponent(message)}`;
+            
+            if (window.Telegram?.WebApp) {
+                window.Telegram.WebApp.openLink(url);
+            } else {
+                window.open(url, '_blank');
+            }
+            
+            showAlert(`🚀 Переведите ТОЧНО ${currentStarsProduct.price} рублей!\n\nВы получите ${currentStarsProduct.amount} PREMIUM STARS`, 'success');
+        }
+
+        // Покупка TON
+        function buyTon() {
+            if (currentTonProduct.amount === 0) {
+                showAlert('Выберите количество TON!', 'warning');
+                return;
+            }
+            
+            const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
+            const userId = user?.id || 'unknown';
+            const message = `BOSS_TON_${currentTonProduct.amount}_USER_${userId}`;
+            
+            const url = `https://www.donationalerts.com/r/artemluci?amount=${currentTonProduct.price}&message=${encodeURIComponent(message)}`;
+            
+            if (window.Telegram?.WebApp) {
+                window.Telegram.WebApp.openLink(url);
+            } else {
+                window.open(url, '_blank');
+            }
+            
+            showAlert(`💎 Переведите ТОЧНО ${currentTonProduct.price} рублей!\n\nВы получите ${currentTonProduct.amount} TON`, 'success');
+        }
+
+        // Красивые алерты
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-100px);
+                background: ${type === 'success' ? 'var(--success)' : 'var(--danger)'};
+                color: white;
+                padding: 20px;
+                border-radius: 16px;
+                font-weight: 600;
+                z-index: 1000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                text-align: center;
+                white-space: pre-line;
+                max-width: 90%;
+                opacity: 0;
+                transition: all 0.3s ease;
+            `;
+            alert.textContent = message;
+            document.body.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.style.opacity = '1';
+                alert.style.transform = 'translateX(-50%) translateY(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                alert.style.transform = 'translateX(-50%) translateY(-100px)';
+                setTimeout(() => alert.remove(), 300);
+            }, 4000);
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            
+            if (window.Telegram?.WebApp) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand();
+            }
+            
+            // Выбираем первый товар по умолчанию
+            selectStarsProduct(50, 72);
+            selectTonProduct(1, 165);
+        });
+    </script>
+</body>
+</html>
