@@ -369,6 +369,11 @@
             opacity: 0.1;
             z-index: -1;
         }
+
+        /* Анимация скролла */
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -387,7 +392,7 @@
             <i class="fas fa-user"></i> ОБЯЗАТЕЛЬНО указывайте свой юзернейм при оплате!
         </div>
 
-        <div class="section">
+        <div class="section" id="stars-section">
             <div class="section-title">
                 <i class="fas fa-crown" style="color: var(--accent-gold);"></i>
                 Premium Stars
@@ -437,12 +442,12 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="buyStars()">
+            <button class="btn btn-primary" id="buy-stars-btn" onclick="buyStars()">
                 <i class="fas fa-crown"></i> КУПИТЬ STARS
             </button>
         </div>
 
-        <div class="section">
+        <div class="section" id="ton-section">
             <div class="section-title">
                 <i class="fas fa-gem" style="color: var(--accent-purple);"></i>
                 TON Crypto
@@ -492,7 +497,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="buyTon()">
+            <button class="btn btn-primary" id="buy-ton-btn" onclick="buyTon()">
                 <i class="fas fa-gem"></i> КУПИТЬ TON
             </button>
         </div>
@@ -533,6 +538,23 @@
             document.body.setAttribute('data-theme', savedTheme);
         }
 
+        // Плавный скролл к элементу
+        function scrollToElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Добавляем анимацию подсветки
+                element.style.animation = 'none';
+                setTimeout(() => {
+                    element.style.animation = 'pulse 0.6s ease-in-out';
+                }, 10);
+            }
+        }
+
         // Выбор продукта звезд
         function selectStarsProduct(amount, price) {
             currentStarsProduct = { amount, price };
@@ -545,6 +567,11 @@
             
             document.getElementById('starsInput').value = amount;
             calculateStarsPrice();
+            
+            // Авто-скролл к кнопке "Купить Stars"
+            setTimeout(() => {
+                scrollToElement('buy-stars-btn');
+            }, 300);
         }
 
         // Выбор продукта TON
@@ -559,6 +586,11 @@
             
             document.getElementById('tonInput').value = amount;
             calculateTonPrice();
+            
+            // Авто-скролл к кнопке "Купить TON"
+            setTimeout(() => {
+                scrollToElement('buy-ton-btn');
+            }, 300);
         }
 
         // Калькулятор звезд
@@ -713,5 +745,14 @@
             selectTonProduct(1, 165);
         });
     </script>
+
+    <style>
+        /* Анимация пульсации для подсветки */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+    </style>
 </body>
 </html>
