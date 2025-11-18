@@ -482,42 +482,42 @@
             </div>
             
             <div class="products-grid">
-                <div class="product-card" onclick="selectTonProduct(1, 165)">
+                <div class="product-card" onclick="selectTonProduct(1, 170)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">1 TON</div>
-                    <div class="product-price">165 ₽</div>
+                    <div class="product-price">170 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(2, 330)">
+                <div class="product-card" onclick="selectTonProduct(2, 340)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">2 TON</div>
-                    <div class="product-price">330 ₽</div>
+                    <div class="product-price">340 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(5, 825)">
+                <div class="product-card" onclick="selectTonProduct(5, 850)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">5 TON</div>
-                    <div class="product-price">825 ₽</div>
+                    <div class="product-price">850 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(10, 1650)">
+                <div class="product-card" onclick="selectTonProduct(10, 1700)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">10 TON</div>
-                    <div class="product-price">1 650 ₽</div>
+                    <div class="product-price">1 700 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(25, 4125)">
+                <div class="product-card" onclick="selectTonProduct(25, 4250)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">25 TON</div>
-                    <div class="product-price">4 125 ₽</div>
+                    <div class="product-price">4 250 ₽</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(50, 8250)">
+                <div class="product-card" onclick="selectTonProduct(50, 8500)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">50 TON</div>
-                    <div class="product-price">8 250 ₽</div>
+                    <div class="product-price">8 500 ₽</div>
                 </div>
             </div>
 
             <div class="calculator">
                 <div class="input-group">
-                    <label><i class="fas fa-calculator"></i> Количество TON:</label>
-                    <input type="number" id="tonInput" placeholder="Введите количество..." oninput="calculateTonPrice()">
+                    <label><i class="fas fa-calculator"></i> Количество TON (можно дробные):</label>
+                    <input type="number" id="tonInput" placeholder="Например: 1.5 или 0.1" step="0.1" min="0.1" oninput="calculateTonPrice()">
                 </div>
                 <div class="result" id="tonResult">
                     <i class="fas fa-arrow-right"></i> Введите количество TON
@@ -639,10 +639,10 @@
         function calculateTonPrice() {
             const input = document.getElementById('tonInput');
             const result = document.getElementById('tonResult');
-            const amount = parseInt(input.value) || 0;
+            const amount = parseFloat(input.value) || 0;
             
             if (amount > 0) {
-                const price = amount * 165;
+                const price = Math.round(amount * 170);
                 result.innerHTML = `<i class="fas fa-gem"></i> ${amount} TON = ${price} RUB`;
                 currentTonProduct = { amount, price };
             } else {
@@ -769,7 +769,7 @@
             }
             
             selectStarsProduct(100, 144);
-            selectTonProduct(1, 165);
+            selectTonProduct(1, 170);
         });
     </script>
 </body>
