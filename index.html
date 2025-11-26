@@ -17,11 +17,13 @@
             --accent-hover: #e6c550;
             --accent-gold: #d4af37;
             --accent-purple: #8a2be2;
+            --accent-crypto: #26a17b;
             --danger: #ff4444;
             --success: #00ff88;
             --gradient: linear-gradient(135deg, #d4af37, #b8860b, #8b6914);
             --gradient-gold: linear-gradient(135deg, #d4af37, #b8860b);
             --gradient-purple: linear-gradient(135deg, #8a2be2, #ff0080);
+            --gradient-crypto: linear-gradient(135deg, #26a17b, #1e8c6e);
         }
 
         [data-theme="light"] {
@@ -34,11 +36,13 @@
             --accent-hover: #b8860b;
             --accent-gold: #d4af37;
             --accent-purple: #8a2be2;
+            --accent-crypto: #26a17b;
             --danger: #e53e3e;
             --success: #38a169;
             --gradient: linear-gradient(135deg, #d4af37, #b8860b);
             --gradient-gold: linear-gradient(135deg, #d4af37, #b8860b);
             --gradient-purple: linear-gradient(135deg, #8a2be2, #ff0080);
+            --gradient-crypto: linear-gradient(135deg, #26a17b, #1e8c6e);
         }
 
         * {
@@ -199,6 +203,12 @@
             background-position: 40% center;
         }
 
+        .usdt-icon {
+            background-image: url('https://i.ibb.co/YBSwVr8K/usdt-image.jpg');
+            background-position: center;
+            background-size: contain;
+        }
+
         .product-name {
             font-size: 15px;
             margin-bottom: 8px;
@@ -210,6 +220,14 @@
             font-size: 18px;
             font-weight: 800;
             background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-price-crypto {
+            font-size: 16px;
+            font-weight: 800;
+            background: var(--gradient-crypto);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -264,6 +282,18 @@
             box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
         }
 
+        .result-crypto {
+            background: var(--gradient-crypto);
+            color: white;
+            padding: 18px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 18px;
+            margin-top: 15px;
+            box-shadow: 0 4px 20px rgba(38, 161, 123, 0.3);
+        }
+
         .btn {
             width: 100%;
             padding: 18px;
@@ -304,6 +334,35 @@
             box-shadow: 0 10px 35px rgba(212, 175, 55, 0.6);
         }
 
+        .btn-crypto {
+            background: var(--gradient-crypto);
+            color: white;
+            box-shadow: 0 6px 25px rgba(38, 161, 123, 0.4);
+        }
+
+        .btn-crypto:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(38, 161, 123, 0.6);
+        }
+
+        .btn-copy {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-copy:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
         .warning {
             background: linear-gradient(135deg, var(--danger), #ff6b6b);
             color: white;
@@ -337,6 +396,71 @@
             font-size: 12px;
             font-weight: 700;
             margin-left: 10px;
+        }
+
+        .badge-crypto {
+            display: inline-block;
+            background: var(--gradient-crypto);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .payment-method.active {
+            border-color: var(--accent);
+            background: var(--bg-card);
+        }
+
+        .payment-method.crypto.active {
+            border-color: var(--accent-crypto);
+        }
+
+        .payment-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .payment-icon.rub {
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .payment-icon.usdt {
+            background-image: url('https://i.ibb.co/YBSwVr8K/usdt-image.jpg');
+            background-size: contain;
         }
 
         .hidden {
@@ -398,6 +522,44 @@
             border-left: 4px solid #ff8c00;
             box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
         }
+
+        .card-details {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .wallet-address {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--accent-crypto);
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .copy-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 12px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .copy-text {
+            flex: 1;
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--text-primary);
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -412,11 +574,11 @@
 
         <div class="warning">
             <i class="fas fa-exclamation-triangle"></i> ВНИМАНИЕ: Точная сумма обязательна! 
-            Ошибка даже на 1 рубль приведет к потере средств!
+            Ошибка даже на 1 рубль/0.01 USDT приведет к потере средств!
         </div>
 
         <div class="important-notice">
-            <i class="fas fa-comment-dots"></i> Указывайте в комментарии вместе с вашим юзернеймом, что именно вы покупаете!
+            <i class="fas fa-comment-dots"></i> Указывайте в комментарии ваш юзернейм и что именно вы покупаете!
         </div>
 
         <div class="section" id="stars-section">
@@ -426,36 +588,53 @@
                 <span class="badge">ROYAL</span>
             </div>
             
+            <div class="payment-methods">
+                <div class="payment-method active" id="stars-rub" onclick="selectStarsPayment('rub')">
+                    <div class="payment-icon rub">RUB</div>
+                    RUB
+                </div>
+                <div class="payment-method crypto" id="stars-usdt" onclick="selectStarsPayment('usdt')">
+                    <div class="payment-icon usdt"></div>
+                    USDT
+                </div>
+            </div>
+            
             <div class="products-grid">
-                <div class="product-card" onclick="selectStarsProduct(100, 144)">
+                <div class="product-card" onclick="selectStarsProduct(100, 144, 1.8)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">100 Stars</div>
                     <div class="product-price">144 ₽</div>
+                    <div class="product-price-crypto">1.8 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectStarsProduct(250, 360)">
+                <div class="product-card" onclick="selectStarsProduct(250, 360, 4.5)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">250 Stars</div>
                     <div class="product-price">360 ₽</div>
+                    <div class="product-price-crypto">4.5 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectStarsProduct(500, 720)">
+                <div class="product-card" onclick="selectStarsProduct(500, 720, 9)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">500 Stars</div>
                     <div class="product-price">720 ₽</div>
+                    <div class="product-price-crypto">9 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectStarsProduct(1000, 1440)">
+                <div class="product-card" onclick="selectStarsProduct(1000, 1440, 18)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">1000 Stars</div>
                     <div class="product-price">1 440 ₽</div>
+                    <div class="product-price-crypto">18 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectStarsProduct(1500, 2160)">
+                <div class="product-card" onclick="selectStarsProduct(1500, 2160, 27)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">1500 Stars</div>
                     <div class="product-price">2 160 ₽</div>
+                    <div class="product-price-crypto">27 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectStarsProduct(2000, 2880)">
+                <div class="product-card" onclick="selectStarsProduct(2000, 2880, 36)">
                     <div class="product-icon stars-icon"></div>
                     <div class="product-name">2000 Stars</div>
                     <div class="product-price">2 880 ₽</div>
+                    <div class="product-price-crypto">36 USDT</div>
                 </div>
             </div>
 
@@ -465,6 +644,9 @@
                     <input type="number" id="starsInput" placeholder="Введите количество..." oninput="calculateStarsPrice()">
                 </div>
                 <div class="result" id="starsResult">
+                    <i class="fas fa-arrow-right"></i> Введите количество звезд
+                </div>
+                <div class="result-crypto hidden" id="starsResultCrypto">
                     <i class="fas fa-arrow-right"></i> Введите количество звезд
                 </div>
             </div>
@@ -481,36 +663,53 @@
                 <span class="badge">ELITE</span>
             </div>
             
+            <div class="payment-methods">
+                <div class="payment-method active" id="ton-rub" onclick="selectTonPayment('rub')">
+                    <div class="payment-icon rub">RUB</div>
+                    RUB
+                </div>
+                <div class="payment-method crypto" id="ton-usdt" onclick="selectTonPayment('usdt')">
+                    <div class="payment-icon usdt"></div>
+                    USDT
+                </div>
+            </div>
+            
             <div class="products-grid">
-                <div class="product-card" onclick="selectTonProduct(1, 170)">
+                <div class="product-card" onclick="selectTonProduct(1, 170, 1.9)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">1 TON</div>
                     <div class="product-price">170 ₽</div>
+                    <div class="product-price-crypto">1.9 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(2, 340)">
+                <div class="product-card" onclick="selectTonProduct(2, 340, 3.8)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">2 TON</div>
                     <div class="product-price">340 ₽</div>
+                    <div class="product-price-crypto">3.8 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(5, 850)">
+                <div class="product-card" onclick="selectTonProduct(5, 850, 9.5)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">5 TON</div>
                     <div class="product-price">850 ₽</div>
+                    <div class="product-price-crypto">9.5 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(10, 1700)">
+                <div class="product-card" onclick="selectTonProduct(10, 1700, 19)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">10 TON</div>
                     <div class="product-price">1 700 ₽</div>
+                    <div class="product-price-crypto">19 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(25, 4250)">
+                <div class="product-card" onclick="selectTonProduct(25, 4250, 47.5)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">25 TON</div>
                     <div class="product-price">4 250 ₽</div>
+                    <div class="product-price-crypto">47.5 USDT</div>
                 </div>
-                <div class="product-card" onclick="selectTonProduct(50, 8500)">
+                <div class="product-card" onclick="selectTonProduct(50, 8500, 95)">
                     <div class="product-icon ton-icon"></div>
                     <div class="product-name">50 TON</div>
                     <div class="product-price">8 500 ₽</div>
+                    <div class="product-price-crypto">95 USDT</div>
                 </div>
             </div>
 
@@ -520,6 +719,9 @@
                     <input type="number" id="tonInput" placeholder="Например: 1.5 или 0.1" step="0.1" min="0.1" oninput="calculateTonPrice()">
                 </div>
                 <div class="result" id="tonResult">
+                    <i class="fas fa-arrow-right"></i> Введите количество TON
+                </div>
+                <div class="result-crypto hidden" id="tonResultCrypto">
                     <i class="fas fa-arrow-right"></i> Введите количество TON
                 </div>
             </div>
@@ -532,19 +734,18 @@
         <div class="info">
             <i class="fas fa-clock"></i> Доставка: в течение 4 часов<br>
             <i class="fas fa-headset"></i> Поддержка: @Bruso1<br>
-            <i class="fas fa-shield-alt"></i> Безопасные платежи через DonationAlerts
+            <i class="fas fa-shield-alt"></i> Безопасные платежи через банковскую карту и USDT
         </div>
     </div>
 
     <script>
         // Текущий выбранный товар
-        let currentStarsProduct = { amount: 0, price: 0 };
-        let currentTonProduct = { amount: 0, price: 0 };
-
-        // === НАСТРОЙКИ ДЛЯ УВЕДОМЛЕНИЙ ===
-        const DONATION_ALERTS_TOKEN = '5SuLMCK1tgDGKY65UCLs';
-        const TELEGRAM_BOT_TOKEN = '8040327822:AAFXebd8LGtg3O9yil5-SNtSN5LVvDBsR2U';
-        const TELEGRAM_CHAT_ID = '1612616728';
+        let currentStarsProduct = { amount: 0, price: 0, usdt: 0 };
+        let currentTonProduct = { amount: 0, price: 0, usdt: 0 };
+        
+        // Текущий метод оплаты
+        let starsPaymentMethod = 'rub';
+        let tonPaymentMethod = 'rub';
 
         // Переключение темы
         function toggleTheme() {
@@ -582,11 +783,65 @@
             }
         }
 
-        // Выбор продукта звезд
-        function selectStarsProduct(amount, price) {
-            currentStarsProduct = { amount, price };
+        // Выбор метода оплаты для Stars
+        function selectStarsPayment(method) {
+            starsPaymentMethod = method;
             
-            document.querySelectorAll('.product-card').forEach(card => {
+            document.querySelectorAll('#stars-section .payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.getElementById(`stars-${method}`).classList.add('active');
+            
+            // Показываем/скрываем соответствующие результаты
+            if (method === 'rub') {
+                document.getElementById('starsResult').classList.remove('hidden');
+                document.getElementById('starsResultCrypto').classList.add('hidden');
+                document.getElementById('buy-stars-btn').classList.remove('btn-crypto');
+                document.getElementById('buy-stars-btn').classList.add('btn-primary');
+            } else {
+                document.getElementById('starsResult').classList.add('hidden');
+                document.getElementById('starsResultCrypto').classList.remove('hidden');
+                document.getElementById('buy-stars-btn').classList.remove('btn-primary');
+                document.getElementById('buy-stars-btn').classList.add('btn-crypto');
+            }
+            
+            // Пересчитываем цену
+            calculateStarsPrice();
+        }
+
+        // Выбор метода оплаты для TON
+        function selectTonPayment(method) {
+            tonPaymentMethod = method;
+            
+            document.querySelectorAll('#ton-section .payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.getElementById(`ton-${method}`).classList.add('active');
+            
+            // Показываем/скрываем соответствующие результаты
+            if (method === 'rub') {
+                document.getElementById('tonResult').classList.remove('hidden');
+                document.getElementById('tonResultCrypto').classList.add('hidden');
+                document.getElementById('buy-ton-btn').classList.remove('btn-crypto');
+                document.getElementById('buy-ton-btn').classList.add('btn-primary');
+            } else {
+                document.getElementById('tonResult').classList.add('hidden');
+                document.getElementById('tonResultCrypto').classList.remove('hidden');
+                document.getElementById('buy-ton-btn').classList.remove('btn-primary');
+                document.getElementById('buy-ton-btn').classList.add('btn-crypto');
+            }
+            
+            // Пересчитываем цену
+            calculateTonPrice();
+        }
+
+        // Выбор продукта звезд
+        function selectStarsProduct(amount, price, usdt) {
+            currentStarsProduct = { amount, price, usdt };
+            
+            document.querySelectorAll('#stars-section .product-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
@@ -602,10 +857,10 @@
         }
 
         // Выбор продукта TON
-        function selectTonProduct(amount, price) {
-            currentTonProduct = { amount, price };
+        function selectTonProduct(amount, price, usdt) {
+            currentTonProduct = { amount, price, usdt };
             
-            document.querySelectorAll('.product-card').forEach(card => {
+            document.querySelectorAll('#ton-section .product-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
@@ -624,14 +879,24 @@
         function calculateStarsPrice() {
             const input = document.getElementById('starsInput');
             const result = document.getElementById('starsResult');
+            const resultCrypto = document.getElementById('starsResultCrypto');
             const amount = parseInt(input.value) || 0;
             
             if (amount > 0) {
                 const price = Math.round(amount * 1.44);
+                const usdtPrice = (amount * 0.018).toFixed(2);
+                
                 result.innerHTML = `<i class="fas fa-crown"></i> ${amount} STARS = ${price} RUB`;
-                currentStarsProduct = { amount, price };
+                resultCrypto.innerHTML = `<i class="fas fa-crown"></i> ${amount} STARS = ${usdtPrice} USDT`;
+                
+                currentStarsProduct = { 
+                    amount, 
+                    price, 
+                    usdt: parseFloat(usdtPrice) 
+                };
             } else {
                 result.innerHTML = '<i class="fas fa-arrow-right"></i> Введите количество звезд';
+                resultCrypto.innerHTML = '<i class="fas fa-arrow-right"></i> Введите количество звезд';
             }
         }
 
@@ -639,15 +904,35 @@
         function calculateTonPrice() {
             const input = document.getElementById('tonInput');
             const result = document.getElementById('tonResult');
+            const resultCrypto = document.getElementById('tonResultCrypto');
             const amount = parseFloat(input.value) || 0;
             
             if (amount > 0) {
                 const price = Math.round(amount * 170);
+                const usdtPrice = (amount * 1.9).toFixed(2);
+                
                 result.innerHTML = `<i class="fas fa-gem"></i> ${amount} TON = ${price} RUB`;
-                currentTonProduct = { amount, price };
+                resultCrypto.innerHTML = `<i class="fas fa-gem"></i> ${amount} TON = ${usdtPrice} USDT`;
+                
+                currentTonProduct = { 
+                    amount, 
+                    price, 
+                    usdt: parseFloat(usdtPrice) 
+                };
             } else {
                 result.innerHTML = '<i class="fas fa-arrow-right"></i> Введите количество TON';
+                resultCrypto.innerHTML = '<i class="fas fa-arrow-right"></i> Введите количество TON';
             }
+        }
+
+        // Функция копирования текста
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showAlert('✅ Скопировано в буфер обмена!', 'success');
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+                showAlert('❌ Ошибка копирования', 'warning');
+            });
         }
 
         // Покупка звезд
@@ -658,19 +943,41 @@
             }
             
             const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
-            const userId = user?.id || 'unknown';
             const username = user?.username || 'unknown_username';
-            const message = `DYNASTY_STARS_${currentStarsProduct.amount}_USER_${userId}_${username}`;
             
-            const url = `https://www.donationalerts.com/r/dynastyshop?amount=${currentStarsProduct.price}&message=${encodeURIComponent(message)}`;
-            
-            if (window.Telegram?.WebApp) {
-                window.Telegram.WebApp.openLink(url);
+            if (starsPaymentMethod === 'rub') {
+                // Оплата рублями
+                showAlert(
+                    `👑 Для покупки ${currentStarsProduct.amount} PREMIUM STARS:\n\n` +
+                    `💳 Переведите ТОЧНО ${currentStarsProduct.price} рублей на карту:\n\n` +
+                    `<div class="copy-container">` +
+                    `<span class="copy-text">2200 1545 8586 4647</span>` +
+                    `<button class="btn-copy" onclick="copyToClipboard('2200 1545 8586 4647')">` +
+                    `<i class="fas fa-copy"></i> Копировать</button>` +
+                    `</div>\n\n` +
+                    `📝 В комментарии укажите:\n` +
+                    `• Ваш юзернейм: ${username}\n` +
+                    `• Товар: ${currentStarsProduct.amount} Stars\n\n` +
+                    `✅ После оплаты вы получите ${currentStarsProduct.amount} PREMIUM STARS в течение 4 часов`,
+                    'success'
+                );
             } else {
-                window.open(url, '_blank');
+                // Оплата USDT
+                showAlert(
+                    `👑 Для покупки ${currentStarsProduct.amount} PREMIUM STARS:\n\n` +
+                    `💎 Переведите ТОЧНО ${currentStarsProduct.usdt} USDT на кошелек:\n\n` +
+                    `<div class="copy-container">` +
+                    `<span class="copy-text">EQCLfvbkTrdUJ1wfyNI9uOdcK30z1wbWWX060mrXBNwp2Tse</span>` +
+                    `<button class="btn-copy" onclick="copyToClipboard('EQCLfvbkTrdUJ1wfyNI9uOdcK30z1wbWWX060mrXBNwp2Tse')">` +
+                    `<i class="fas fa-copy"></i> Копировать</button>` +
+                    `</div>\n\n` +
+                    `📝 В комментарии укажите:\n` +
+                    `• Ваш юзернейм: ${username}\n` +
+                    `• Товар: ${currentStarsProduct.amount} Stars\n\n` +
+                    `✅ После оплаты вы получите ${currentStarsProduct.amount} PREMIUM STARS в течение 4 часов`,
+                    'success'
+                );
             }
-            
-            showAlert(`👑 Переведите ТОЧНО ${currentStarsProduct.price} рублей!\n\n📝 Укажите в комментарии:\n• Ваш юзернейм\n• Что покупаете (${currentStarsProduct.amount} Stars)\n\nВы получите ${currentStarsProduct.amount} PREMIUM STARS`, 'success');
         }
 
         // Покупка TON
@@ -681,47 +988,42 @@
             }
             
             const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
-            const userId = user?.id || 'unknown';
             const username = user?.username || 'unknown_username';
-            const message = `DYNASTY_TON_${currentTonProduct.amount}_USER_${userId}_${username}`;
             
-            const url = `https://www.donationalerts.com/r/dynastyshop?amount=${currentTonProduct.price}&message=${encodeURIComponent(message)}`;
-            
-            if (window.Telegram?.WebApp) {
-                window.Telegram.WebApp.openLink(url);
+            if (tonPaymentMethod === 'rub') {
+                // Оплата рублями
+                showAlert(
+                    `💎 Для покупки ${currentTonProduct.amount} TON:\n\n` +
+                    `💳 Переведите ТОЧНО ${currentTonProduct.price} рублей на карту:\n\n` +
+                    `<div class="copy-container">` +
+                    `<span class="copy-text">2200 1545 8586 4647</span>` +
+                    `<button class="btn-copy" onclick="copyToClipboard('2200 1545 8586 4647')">` +
+                    `<i class="fas fa-copy"></i> Копировать</button>` +
+                    `</div>\n\n` +
+                    `📝 В комментарии укажите:\n` +
+                    `• Ваш юзернейм: ${username}\n` +
+                    `• Товар: ${currentTonProduct.amount} TON\n\n` +
+                    `✅ После оплаты вы получите ${currentTonProduct.amount} TON в течение 4 часов`,
+                    'success'
+                );
             } else {
-                window.open(url, '_blank');
+                // Оплата USDT
+                showAlert(
+                    `💎 Для покупки ${currentTonProduct.amount} TON:\n\n` +
+                    `💎 Переведите ТОЧНО ${currentTonProduct.usdt} USDT на кошелек:\n\n` +
+                    `<div class="copy-container">` +
+                    `<span class="copy-text">EQCLfvbkTrdUJ1wfyNI9uOdcK30z1wbWWX060mrXBNwp2Tse</span>` +
+                    `<button class="btn-copy" onclick="copyToClipboard('EQCLfvbkTrdUJ1wfyNI9uOdcK30z1wbWWX060mrXBNwp2Tse')">` +
+                    `<i class="fas fa-copy"></i> Копировать</button>` +
+                    `</div>\n\n` +
+                    `📝 В комментарии укажите:\n` +
+                    `• Ваш юзернейм: ${username}\n` +
+                    `• Товар: ${currentTonProduct.amount} TON\n\n` +
+                    `✅ После оплаты вы получите ${currentTonProduct.amount} TON в течение 4 часов`,
+                    'success'
+                );
             }
-            
-            showAlert(`💎 Переведите ТОЧНО ${currentTonProduct.price} рублей!\n\n📝 Укажите в комментарии:\n• Ваш юзернейм\n• Что покупаете (${currentTonProduct.amount} TON)\n\nВы получите ${currentTonProduct.amount} TON`, 'success');
         }
-
-        // Авто-проверка платежей
-        setInterval(async () => {
-            try {
-                const response = await fetch('https://www.donationalerts.com/api/v1/alerts/donations', {
-                    headers: {'Authorization': `Bearer ${DONATION_ALERTS_TOKEN}`}
-                });
-                const data = await response.json();
-                
-                if (data.data && data.data.length > 0) {
-                    data.data.forEach(donation => {
-                        if (donation.message.includes('DYNASTY_')) {
-                            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                                method: 'POST',
-                                headers: {'Content-Type': 'application/json'},
-                                body: JSON.stringify({
-                                    chat_id: TELEGRAM_CHAT_ID,
-                                    text: `👑 НОВАЯ ПОКУПКА DYNASTY!\n👤 От: ${donation.username}\n💰 Сумма: ${donation.amount} RUB\n📦 Товар: ${donation.message}\n⏰ ${new Date().toLocaleString()}`
-                                })
-                            });
-                        }
-                    });
-                }
-            } catch (error) {
-                console.log('Ошибка проверки платежей:', error);
-            }
-        }, 10000);
 
         // Красивые алерты
         function showAlert(message, type) {
@@ -731,8 +1033,8 @@
                 top: 20px;
                 left: 50%;
                 transform: translateX(-50%) translateY(-100px);
-                background: ${type === 'success' ? 'var(--success)' : 'var(--danger)'};
-                color: white;
+                background: white;
+                color: #2d3748;
                 padding: 20px;
                 border-radius: 16px;
                 font-weight: 600;
@@ -743,8 +1045,27 @@
                 max-width: 90%;
                 opacity: 0;
                 transition: all 0.3s ease;
+                border: 2px solid ${type === 'success' ? '#38a169' : '#e53e3e'};
             `;
-            alert.textContent = message;
+            
+            // Обрабатываем HTML в сообщении
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = message;
+            
+            // Создаем контент алерта
+            alert.innerHTML = '';
+            
+            // Добавляем иконку в зависимости от типа
+            const icon = document.createElement('div');
+            icon.style.cssText = 'font-size: 24px; margin-bottom: 10px;';
+            icon.innerHTML = type === 'success' ? '✅' : '⚠️';
+            alert.appendChild(icon);
+            
+            // Добавляем текстовый контент
+            const textContent = document.createElement('div');
+            textContent.innerHTML = message;
+            alert.appendChild(textContent);
+            
             document.body.appendChild(alert);
             
             setTimeout(() => {
@@ -756,7 +1077,7 @@
                 alert.style.opacity = '0';
                 alert.style.transform = 'translateX(-50%) translateY(-100px)';
                 setTimeout(() => alert.remove(), 300);
-            }, 6000);
+            }, 8000);
         }
 
         // Инициализация
@@ -768,8 +1089,8 @@
                 window.Telegram.WebApp.expand();
             }
             
-            selectStarsProduct(100, 144);
-            selectTonProduct(1, 170);
+            selectStarsProduct(100, 144, 1.8);
+            selectTonProduct(1, 170, 1.9);
         });
     </script>
 </body>
